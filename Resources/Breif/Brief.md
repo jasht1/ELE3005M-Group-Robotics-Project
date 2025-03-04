@@ -8,10 +8,12 @@
 > 4. Understand and evaluate the operation and application of a range of sensory systems in robotics and demonstrate principles of secure data storage and analysis
 > 5. Communicate effectively on complex engineering matters with technical and non-technical audiences
 
-Group Project to automate a basic manipulation task in which the Niryo robot is programmed using MATLAB/Python/ROS to pick up three small boxes (P1, P2, P3, 10 mm × 10 mm × 10 mm) and stack them on top of each other at the other side of a barrier (P0, barrier height 100 mm, width 10 mm).
-Innovative solutions that go beyond the project requirements to improve performance and/or user interface are encouraged.
+The **Group Project** to automate a basic manipulation task in which the Niryo robot is programmed using MATLAB/Python/ROS to pick up three small boxes (P1, P2, P3, 10 mm × 10 mm × 10 mm) and stack them on top of each other at the other side of a barrier (P0, barrier height 100 mm, width 10 mm).
 
-![Breif_image](Brief_image.png)
+![Group 6 Layout](Group6Layout.svg)
+
+
+Innovative solutions that go beyond the project requirements to improve performance and/or user interface are encouraged.
 
 ## Group Work
 
