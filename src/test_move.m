@@ -1,3 +1,5 @@
+run nyro_body
+
 show(robot);
 axis tight;
 
