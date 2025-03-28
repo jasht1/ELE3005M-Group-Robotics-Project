@@ -1,10 +1,12 @@
+
+robot = rigidBodyTree;
+
 body1 = rigidBody('body1');
 jnt1 = rigidBodyJoint('jnt1', 'revolute');
 jnt1.PositionLimits = [-3.05433, 3.05433];
 tform = trvec2tform([0,0,0]);
 setFixedTransform(jnt1,tform);
 body1.Joint = jnt1;
-robot = rigidBodyTree;
 addBody(robot, body1,'base');
 
 body2 = rigidBody('body2');
@@ -54,20 +56,3 @@ setFixedTransform(jnt7,tform7);
 body7.Joint = jnt7;
 addBody(robot,body7,'body6');
 
-show(robot);
-axis tight;
-
-pos = [0.15 0.15 0.005];
-poseTF = trvec2tform(pos);
-
-hold on;
-plotTransforms(pos,eul2quat([0 0 0]),FrameSize=0.1);
-
-ik = inverseKinematics("RigidBodyTree",robot);
-weights = [0 1 1 1 1 1];
-initialguess = homeConfiguration(robot);
-[configSoln,solnInfo] = ik("body7",poseTF,weights,initialguess);
-
-figure;
-show(robot,configSoln,PreservePlot=false);
-axis tight;
