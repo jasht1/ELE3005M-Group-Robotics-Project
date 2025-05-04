@@ -19,7 +19,8 @@ function animate_trajectory(robot, qMat, save)
     xLimits = [-0.1, 0.4];
     yLimits = [-0.3, 0.3];
     zLimits = [0, 0.5];
-    
+    viewport = [90,20];
+
     % GIF settings
     gifFilename = 'Exports/stack_blocks_smooth_animation.gif';
     delayTime = 1/30; % 30 fps
@@ -40,7 +41,7 @@ function animate_trajectory(robot, qMat, save)
         xlim(xLimits);
         ylim(yLimits);
         zlim(zLimits);
-        view(135, 20);
+        view(viewport);
         drawnow;
 
         if save
