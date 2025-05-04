@@ -7,7 +7,7 @@ function pose = get_new_pose(robot, position, angle, varargin)
   if nargin < 5
     initialGuess = homeConfiguration(robot);
   else
-    initialguess = varargin{2};
+    initialGuess = varargin{2};
   end
 
   poseTF = trvec2tform(position) * eul2tform(angle);

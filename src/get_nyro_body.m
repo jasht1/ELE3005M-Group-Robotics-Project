@@ -1,5 +1,6 @@
 function robot = get_nyro_body()
   robot = rigidBodyTree;
+  robot.DataFormat = 'row';
   body1 = rigidBody('body1');
   jnt1 = rigidBodyJoint('jnt1', 'revolute');
   jnt1.PositionLimits = [-3.05433, 3.05433];
