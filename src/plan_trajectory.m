@@ -29,13 +29,14 @@ function [qMat, ts] = plan_trajectory(robot, positions, varargin)
   numJoints = numel(homeConfiguration(robot));
   fps = 30;        % samples per second
 
+  % solve each position
+  ik = inverseKinematics("RigidBodyTree",robot);
   initialGuess = homeConfiguration(robot);
   qTargets = zeros(numPoints, numJoints);
-
-  % solve each position
   for i = 1:numPoints 
-    pos = positions(i, :);
-    pose = get_new_pose(robot,pos,eulAngles,weights,initialGuess);
+    position = positions(i, :);
+    poseTF = trvec2tform(position) * eul2tform(eulAngles);
+    pose = ik("body7",poseTF,weights,initialGuess);
     qTargets(i, :) = [pose.JointPosition];
     initialGuess = pose; % start from prev pose
   end

@@ -28,4 +28,4 @@ figure
 show(robot,pose,PreservePlot=false)
 axis tight
 
-print_pose(pose)
+print_pose(pose);

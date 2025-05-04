@@ -1,11 +1,16 @@
-function pose = get_new_pose(robot, position, angle, weights, initialguess)
-  if nargin < 3
-    weights = [0.9 0.9 0.9 1 1 1];
-  end
+function pose = get_new_pose(robot, position, angle, varargin)
   if nargin < 4
-    initialguess = homeConfiguration(robot);
+    weights = [0.9 0.9 0.9 1 1 1];
+  else
+    weights = varargin{1};
   end
+  if nargin < 5
+    initialGuess = homeConfiguration(robot);
+  else
+    initialguess = varargin{2};
+  end
+
   poseTF = trvec2tform(position) * eul2tform(angle);
   ik = inverseKinematics("RigidBodyTree",robot);
-  [pose, ~] = ik("body7",poseTF,weights,initialguess);
+  [pose, ~] = ik("body7",poseTF,weights,initialGuess);
 end
