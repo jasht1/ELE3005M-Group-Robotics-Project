@@ -1,0 +1,1 @@
+https://github.com/Unity-Technologies/Unity-Robotics-Hub/blob/main/tutorials/pick_and_place/PickAndPlaceProject/Assets/URDF/niryo_one/niryo_one.urdf
