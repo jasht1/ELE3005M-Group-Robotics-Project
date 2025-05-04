@@ -1,5 +1,3 @@
-# !/usr/bin/env python
-
 from niryo_robot_python_ros_wrapper.ros_wrapper import *
 import sys
 import rospy
