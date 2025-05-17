@@ -19,16 +19,18 @@ function animate_trajectory(robot, qMat, save)
     xLimits = [-0.1, 0.4];
     yLimits = [-0.3, 0.3];
     zLimits = [0, 0.5];
-    viewport = [90,20];
+    viewport = [90, 20];
 
-    % GIF settings
-    gifFilename = 'Exports/stack_blocks_smooth_animation.gif';
-    delayTime = 1/30; % 30 fps
-    
+    % Video settings
+    videoFilename = 'Exports/stack_blocks_smooth_animation';
+    fps = 30;
+    fig = figure('Visible', ternary(save, 'off', 'on'), 'Position', [100, 100, 1920, 1080]);
+
     if save
-        figure('Visible', 'off');
-    else
-        figure('Visible', 'on');
+        v = VideoWriter(videoFilename, 'Motion JPEG AVI'); %use MPEG-4 if u use win
+        v.Quality = 100;
+        v.FrameRate = fps;
+        open(v);
     end
 
     for i = 1:size(qMat, 1)
@@ -37,7 +39,7 @@ function animate_trajectory(robot, qMat, save)
             config(j) = qMat(i, j);
         end
 
-        show(robot, config,'PreservePlot', false,'Frames', 'on');
+        show(robot, config, 'PreservePlot', false, 'Frames', 'on');
         xlim(xLimits);
         ylim(yLimits);
         zlim(zLimits);
@@ -45,20 +47,22 @@ function animate_trajectory(robot, qMat, save)
         drawnow;
 
         if save
-            frame = getframe(gcf);
-            im = frame2im(frame);
-            [A, map] = rgb2ind(im, 256);
-
-            if i == 1
-                imwrite(A, map, gifFilename,'gif', 'LoopCount', Inf, 'DelayTime', delayTime);
-            else
-                imwrite(A, map, gifFilename,'gif', 'WriteMode', 'append', 'DelayTime', delayTime);
-            end
+            frame = getframe(fig);
+            writeVideo(v, frame);
         end
     end
 
     if save
-        fprintf('Animation saved to %s\n', gifFilename);
+        close(v);
+        fprintf('Animation saved to %s\n', videoFilename);
+    end
+end
+
+function result = ternary(condition, valTrue, valFalse)
+    if condition
+        result = valTrue;
+    else
+        result = valFalse;
     end
 end
 
