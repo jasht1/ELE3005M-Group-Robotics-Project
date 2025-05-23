@@ -12,5 +12,5 @@ function pose = get_new_pose(robot, position, angle, varargin)
 
   poseTF = trvec2tform(position) * eul2tform(angle);
   ik = inverseKinematics("RigidBodyTree",robot);
-  [pose, ~] = ik("body7",poseTF,weights,initialGuess);
+  [pose, ~] = ik("EndEffector",poseTF,weights,initialGuess);
 end
